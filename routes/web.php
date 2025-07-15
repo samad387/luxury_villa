@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TransportController; // Pour le site public
+use App\Http\Controllers\Admin\TransportController as AdminTransportController; // Pour l'admin
 
 Route::post('/reservation', [ReservationController::class, 'store'])->name('reservations.store');
 Route::name('public.')->prefix('establishments')->group(function () {
@@ -39,6 +41,13 @@ Route::get('/pack', function () {
 Route::get('/transport', function () {
     return view('transport');
 })->name('transport');
+
+// Routes Transport Dropdown
+Route::get('/location-voiture', [TransportController::class, 'showVoitures'])->name('location_voiture');
+
+Route::get('/location-moto', [TransportController::class, 'showMotos'])->name('location_moto');
+
+Route::get('/vip-transport', [TransportController::class, 'showVip'])->name('vip_transport');
 
 // Route::get('/etablissement', function () {
 //     return view('etablissement');
@@ -104,7 +113,7 @@ Route::get('/balademontgolfiere', function () {
     return view('balademontgolfiere');
 })->name('balademontgolfiere');
 
-
+Route::get('/transport/{transport}', [TransportController::class, 'showPublic'])->name('public.transport.show');
 
 
 // ✅ Route pour envoyer un message du formulaire de contact
@@ -149,5 +158,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('villas', VillaController::class);
         Route::resource('riads', RiadController::class);
         Route::resource('appartements', AppartementController::class);
+        Route::resource('transports', AdminTransportController::class);
     });
 });

@@ -566,21 +566,41 @@
   <main class="main-content">
     <h1 class="villa-title">{{$villa->name}}</h1>
     
-    @if ($villa->images->isNotEmpty())
-    <!-- Main Swiper -->
-    <div class="swiper mainSwiper" onclick="openFullscreen()">
-      <div class="swiper-wrapper">
-        @foreach ($villa->images as $image)
-        <div class="swiper-slide">
-          <img src="{{asset('storage/' . $image->path)}}" alt="{{$villa->name}}">
+    @if($villa->images && $villa->images->count() > 0)
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <div class="swiper mainSwiper" style="max-width: 700px; margin: 0 auto 32px;">
+        <div class="swiper-wrapper">
+            @foreach($villa->images as $img)
+                <div class="swiper-slide">
+                    <img src="{{ asset('storage/' . $img->path) }}" alt="{{ $villa->name }}" style="width:100%;height:400px;object-fit:cover;border-radius:16px;box-shadow:0 2px 16px #0002;">
+                </div>
+            @endforeach
         </div>
-        @endforeach
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.mainSwiper', {
+            spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            loop: true,
+            autoplay: false,
+            keyboard: { enabled: true },
+        });
+    });
+    </script>
+@endif
+    
     <!-- Thumbnail Swiper -->
     <div class="swiper thumbnailSwiper">
       <div class="swiper-wrapper">
@@ -591,7 +611,6 @@
         @endforeach
       </div>
     </div>
-    @endif
     
     <section class="description">
       <h2>Description</h2>
@@ -830,3 +849,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @endsection
+

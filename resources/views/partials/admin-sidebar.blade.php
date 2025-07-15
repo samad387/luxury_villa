@@ -32,6 +32,24 @@
                     Appartements
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.transports.index', ['type' => 'moto']) }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->fullUrlIs('*transports?type=moto*')) bg-gray-700 @endif">
+                    <i class="fas fa-motorcycle mr-3 text-lg"></i>
+                    Moto
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transports.index', ['type' => 'voiture']) }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->fullUrlIs('*transports?type=voiture*')) bg-gray-700 @endif">
+                    <i class="fas fa-car-side mr-3 text-lg"></i>
+                    Voiture
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transports.index', ['type' => 'vip']) }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->fullUrlIs('*transports?type=vip*')) bg-gray-700 @endif">
+                    <i class="fas fa-crown mr-3 text-lg"></i>
+                    VIP
+                </a>
+            </li>
             {{-- <li>
                 <a href="{{ route('admin.users.index') }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->routeIs('admin.users.*')) bg-gray-700 @endif">
                     <i class="fas fa-users mr-3 text-lg"></i>

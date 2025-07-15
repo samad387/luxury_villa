@@ -105,7 +105,8 @@
 
     @media (max-width: 768px) {
         .hero-video-section {
-            height: 60vh;
+            height: 90vh;
+            min-height: 400px;
         }
 
         .hero-video-texts h1 {
@@ -120,6 +121,9 @@
         .hero-video-buttons {
             flex-direction: column;
             gap: 12px;
+        }
+        .gradient-title {
+            font-size: 2rem !important;
         }
     }
 </style>
@@ -157,7 +161,7 @@
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     font-family: 'Georgia', serif;
 ">
-    <h2 style="
+    <h2 class="gradient-title" style="
         font-size: 3.5rem; 
         font-weight: bold; 
         margin-bottom: 30px; 
@@ -255,20 +259,46 @@
         text-transform: uppercase;
     }
 
-    @media (max-width: 768px) {
+    /* --- Ajout des styles responsive mobile --- */
+    @media (max-width: 900px) {
+        .section-conciergerie {
+            padding: 40px 20px;
+        }
+        .section-conciergerie h2 {
+            font-size: 2.1rem;
+            margin-bottom: 35px;
+        }
         .grid-conciergerie {
             grid-template-columns: 1fr;
+            gap: 28px;
         }
-
         .carte-conciergerie img {
-            height: 250px;
+            height: 180px;
         }
-
         .texte-categorie {
-            font-size: 20px;
+            font-size: 1.1rem;
+            padding: 15px;
         }
-
-       
+    }
+    @media (max-width: 600px) {
+        .section-conciergerie {
+            padding: 18px 4px;
+        }
+        .section-conciergerie h2 {
+            font-size: 1.3rem;
+            margin-bottom: 18px;
+        }
+        .carte-conciergerie {
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .carte-conciergerie img {
+            height: 120px;
+        }
+        .texte-categorie {
+            font-size: 1rem;
+            padding: 10px;
+        }
     }
 </style>
 
@@ -540,6 +570,86 @@
   </div>
 </section>
 
+<!-- Section Catégories Mobile Images Only (Mobile First) -->
+<style>
+@media (max-width: 600px) {
+    .grid-conciergerie {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 28px !important;
+        max-width: 100vw !important;
+        margin: 0 auto !important;
+        padding: 0 2vw !important;
+    }
+    .carte-conciergerie {
+        background: none !important;
+        box-shadow: none !important;
+        border-radius: 18px !important;
+        margin: 0 0 10px 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .categorie-img-link {
+        display: block;
+        width: 98vw;
+        max-width: 98vw;
+        margin: 0 auto;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 4px 18px rgba(191,167,111,0.13);
+        transition: box-shadow 0.2s;
+    }
+    .categorie-img-link:active, .categorie-img-link:focus {
+        box-shadow: 0 8px 28px rgba(191,167,111,0.18);
+    }
+    .categorie-img-mobile {
+        width: 100%;
+        height: 38vw;
+        min-height: 160px;
+        max-height: 220px;
+        object-fit: cover;
+        border-radius: 18px;
+        display: block;
+    }
+    .categorie-titre-mobile {
+        font-size: 1.18rem;
+        color: #222;
+        text-align: center;
+        font-weight: 700;
+        margin-top: 12px;
+        margin-bottom: 2px;
+        letter-spacing: 0.5px;
+    }
+    .texte-categorie, .carte-conciergerie .btn, .carte-conciergerie a:not(.categorie-img-link) {
+        display: none !important;
+    }
+}
+</style>
+
+<!-- Exemple pour 3 catégories (à adapter dans la boucle si besoin) -->
+<div class="grid-conciergerie">
+    <div class="carte-conciergerie">
+        <a href="{{ route('public.establishments.index') }}" class="categorie-img-link">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Villas de Luxe" class="categorie-img-mobile">
+        </a>
+        <div class="categorie-titre-mobile">Villas de Luxe</div>
+    </div>
+    <div class="carte-conciergerie">
+        <a href="{{ route('transport') }}" class="categorie-img-link">
+            <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80" alt="Transport Premium" class="categorie-img-mobile">
+        </a>
+        <div class="categorie-titre-mobile">Transport Premium</div>
+    </div>
+    <div class="carte-conciergerie">
+        <a href="{{ route('activite') }}" class="categorie-img-link">
+            <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=600&q=80" alt="Conciergerie de Luxe" class="categorie-img-mobile">
+        </a>
+        <div class="categorie-titre-mobile">Conciergerie de Luxe</div>
+    </div>
+</div>
 
 
 @endsection

@@ -155,6 +155,72 @@
         .nav-item.dropdown:hover .nav-link {
             color: #bfa76f !important;
         }
+        @media (max-width: 900px) {
+            .navbar-nav {
+                gap: 0.5rem;
+            }
+            .nav-link, .dropdown-item {
+                font-size: 1.1rem;
+                padding: 0.9rem 1.2rem;
+                text-align: left;
+            }
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem 0;
+            }
+            .navbar-nav {
+                gap: 0.2rem;
+            }
+            .nav-link, .dropdown-item {
+                font-size: 1.15rem;
+                padding: 1rem 1.5rem;
+                width: 100%;
+            }
+            .dropdown-menu {
+                min-width: 100vw;
+                left: -16px !important;
+                border-radius: 0 0 12px 12px;
+            }
+            .navbar-toggler {
+                font-size: 1.5rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0.2rem 0;
+            }
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+            .nav-link, .dropdown-item {
+                font-size: 1.05rem;
+                padding: 1.1rem 1.2rem;
+            }
+            .dropdown-menu {
+                min-width: 100vw;
+                left: -16px !important;
+                border-radius: 0 0 12px 12px;
+            }
+        }
+        /* Amélioration générale des boutons */
+        .btn, button, input[type="submit"] {
+            min-width: 44px;
+            min-height: 44px;
+            font-size: 1rem;
+            border-radius: 8px;
+        }
+        /* Ajout de padding général sur mobile */
+        @media (max-width: 768px) {
+            main, .container {
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+        }
 
     </style>
 </head>
@@ -184,7 +250,17 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('activite') }}">Activités</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('pack') }}">Packs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('transport') }}">Transport</a></li>
+                    <!-- Ajout du menu déroulant Transport -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="transportDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Transport
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="transportDropdown">
+                            <li><a class="dropdown-item" href="{{ route('location_voiture') }}"><i class="fas fa-car-side me-2"></i>Location Voiture</a></li>
+                            <li><a class="dropdown-item" href="{{ route('location_moto') }}"><i class="fas fa-motorcycle me-2"></i>Location Moto</a></li>
+                            <li><a class="dropdown-item" href="{{ route('vip_transport') }}"><i class="fas fa-crown me-2"></i>VIP Transport</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </div>
