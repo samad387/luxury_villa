@@ -10,8 +10,38 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ActivityController as PublicActivityController;
 use App\Http\Controllers\TransportController; // Pour le site public
 use App\Http\Controllers\Admin\TransportController as AdminTransportController; // Pour l'admin
+use App\Http\Controllers\Admin\ActivityController as AdminActivityController;
+
+
+
+use App\Http\Controllers\JetController;
+use App\Http\Controllers\Admin\JetController as AdminJetController;
+use App\Http\Controllers\YachtController;
+use App\Http\Controllers\Admin\YachtController as AdminYachtController;
+
+/*
+|--------------------------------------------------------------------------
+| JETS PRIVÉS - SITE PUBLIC
+|--------------------------------------------------------------------------
+*/
+Route::get('/jet-prive', [JetController::class, 'index'])->name('jet.index');
+Route::get('/jet-prive/{jet}', [JetController::class, 'show'])->name('jet.show');
+Route::post('/jet-prive/reservation', [JetController::class, 'reserve'])->name('jet.reserve');
+
+/*
+|--------------------------------------------------------------------------
+| YACHTS - SITE PUBLIC
+|--------------------------------------------------------------------------
+*/
+Route::get('/yacht', [YachtController::class, 'index'])->name('yacht.index');
+Route::get('/yacht/{yacht}', [YachtController::class, 'show'])->name('yacht.show');
+Route::post('/yacht/reservation', [YachtController::class, 'reserve'])->name('yacht.reserve');
+
+
+
 
 Route::post('/reservation', [ReservationController::class, 'store'])->name('reservations.store');
 Route::name('public.')->prefix('establishments')->group(function () {
@@ -30,9 +60,8 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/activite', function () {
-    return view('activite');
-})->name('activite');
+Route::get('/activite', [PublicActivityController::class, 'index'])->name('activite');
+Route::get('/activites/{activity}', [PublicActivityController::class, 'show'])->name('public.activities.show');
 
 Route::get('/pack', function () {
     return view('pack');
@@ -56,63 +85,6 @@ Route::get('/vip-transport', [TransportController::class, 'showVip'])->name('vip
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-Route::get('/audiq8', function () {
-    return view('audiq8');
-})->name('audiq8');
-
-Route::get('/porshmacan', function () {
-    return view('porshmacan');
-})->name('porshmacan');
-
-Route::get('/touareg', function () {
-    return view('touareg');
-})->name('touareg');
-
-Route::get('/golf8', function () {
-    return view('golf8');
-})->name('golf8');
-
-Route::get('/mercedesclassea35d', function () {
-    return view('mercedesclassea35d');
-})->name('mercedesclassea35d');
-
-Route::get('/rangerovervelar', function () {
-    return view('rangerovervelar');
-})->name('rangerovervelar');
-
-Route::get('/dacia', function () {
-    return view('dacia');
-})->name('dacia');
-
-Route::get('/clio5', function () {
-    return view('clio5');
-})->name('clio5');
-
-Route::get('/fiat', function () {
-    return view('fiat');
-})->name('fiat');
-
-Route::get('/tmax530dx', function () {
-    return view('tmax530dx');
-})->name('tmax530dx');
-
-Route::get('/sh150i', function () {
-    return view('sh150i');
-})->name('sh150i');
-
-Route::get('/xadv', function () {
-    return view('xadv');
-})->name('xadv');
-
-Route::get('/villa4', function () {
-    return view('villa4');
-})->name('villa4');
-
-Route::get('/balademontgolfiere', function () {
-    return view('balademontgolfiere');
-})->name('balademontgolfiere');
-
 Route::get('/transport/{transport}', [TransportController::class, 'showPublic'])->name('public.transport.show');
 
 
@@ -159,5 +131,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('riads', RiadController::class);
         Route::resource('appartements', AppartementController::class);
         Route::resource('transports', AdminTransportController::class);
+        Route::resource('activities', AdminActivityController::class);
+        Route::resource('jets', AdminJetController::class);
+        Route::resource('yachts', AdminYachtController::class);
+        Route::resource('reservations', \App\Http\Controllers\Admin\ReservationController::class);
+
     });
 });

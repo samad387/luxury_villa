@@ -88,6 +88,27 @@
     overflow-x: auto;
     padding-bottom: 0.5rem;
     margin-bottom: 2rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+  }
+
+  .thumbnail-row::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .thumbnail-row::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .thumbnail-row::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+
+  .thumbnail-row::-webkit-scrollbar-thumb:hover {
+    background: #999;
   }
 
   .thumbnail-row img {
@@ -97,12 +118,14 @@
     border-radius: 8px;
     cursor: pointer;
     border: 2px solid transparent;
-    transition: border 0.3s;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
   }
 
   .thumbnail-row img:hover,
   .thumbnail-row img.active {
     border: 2px solid #FF5A5F;
+    transform: scale(1.05);
   }
 
   .description {
@@ -281,15 +304,235 @@
     }
    @media (max-width: 900px) {
     .container {
-     grid-template-columns: 1fr
+      grid-template-columns: 1fr;
+      margin: 1rem auto;
+      gap: 1rem;
+      padding: 0 0.5rem;
+    }
+    .main-content {
+      padding: 1rem;
     }
     .description p {
-        max-width: 550px;
+        max-width: 100%;
     }
     .sidebar {
       position: relative;
       top: 0;
       width: 100%;
+      padding: 1.5rem;
+    }
+    .riad-title {
+      font-size: 1.8rem;
+    }
+  }
+
+  /* Responsive Styles for Images */
+  @media (max-width: 998px) {
+    .main-image-container {
+      margin-bottom: 0.75rem;
+      border-radius: 10px;
+    }
+    .main-image-container img { 
+      height: 320px; 
+      max-width: 100%;
+      object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .carousel-controls span {
+      padding: 8px 12px;
+      font-size: 1.2rem;
+    }
+    .thumbnail-row { 
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+    }
+    .thumbnail-row img { 
+      width: 90px;
+      height: 65px;
+      border-radius: 6px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .main-image-container {
+      margin-bottom: 0.75rem;
+      border-radius: 10px;
+    }
+    .main-image-container img { 
+      height: 300px; 
+      max-width: 100%;
+      width: 100%;
+      object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .carousel-controls {
+      padding: 0 0.5rem;
+    }
+    .carousel-controls span {
+      padding: 7px 11px;
+      font-size: 1.1rem;
+    }
+    .thumbnail-row { 
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+    }
+    .thumbnail-row img { 
+      width: 85px;
+      height: 60px;
+      border-radius: 6px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main-image-container {
+      margin-bottom: 0.75rem;
+      border-radius: 8px;
+    }
+    .main-image-container img { 
+      height: 280px; 
+      max-width: 100%;
+      width: 100%;
+      object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .carousel-controls {
+      padding: 0 0.5rem;
+    }
+    .carousel-controls span {
+      padding: 6px 10px;
+      font-size: 1rem;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .thumbnail-row { 
+      gap: 6px;
+      margin-bottom: 1.25rem;
+      padding: 0.5rem 0.25rem;
+    }
+    .thumbnail-row img { 
+      width: 75px;
+      height: 55px;
+      border-radius: 6px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .main-image-container {
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+    }
+    .main-image-container img { 
+      height: 240px; 
+      max-width: 100%;
+      width: 100%;
+      object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .carousel-controls span {
+      padding: 5px 8px;
+      font-size: 0.9rem;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .thumbnail-row { 
+      gap: 5px;
+      margin-bottom: 1rem;
+      padding: 0.5rem 0.25rem;
+    }
+    .thumbnail-row img { 
+      width: 65px;
+      height: 50px;
+      border-radius: 5px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      margin: 0.5rem auto;
+      padding: 0 0.25rem;
+    }
+    .main-content {
+      padding: 0.75rem;
+      border-radius: 8px;
+    }
+    .sidebar {
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .riad-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .description h2 {
+      font-size: 1.2rem;
+    }
+    .description p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .location h3 {
+      font-size: 1.1rem;
+    }
+    .sidebar h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    form input,
+    form select,
+    form textarea {
+      padding: 0.6rem;
+      font-size: 0.9rem;
+    }
+    button[type="submit"] {
+      padding: 0.8rem;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      margin: 0.25rem auto;
+      padding: 0 0.125rem;
+    }
+    .main-content {
+      padding: 0.5rem;
+      border-radius: 6px;
+    }
+    .sidebar {
+      padding: 0.75rem;
+      border-radius: 6px;
+    }
+    .riad-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .description h2 {
+      font-size: 1.1rem;
+    }
+    .description p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .location h3 {
+      font-size: 1rem;
+    }
+    .sidebar h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    form label {
+      font-size: 0.9rem;
+    }
+    form input,
+    form select,
+    form textarea {
+      padding: 0.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+    button[type="submit"] {
+      padding: 0.7rem;
+      font-size: 0.95rem;
     }
   }
 </style>

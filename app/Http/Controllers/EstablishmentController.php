@@ -6,6 +6,8 @@ use App\Models\Villa;
 use App\Models\Riad;
 use App\Models\Appartement;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class EstablishmentController extends Controller
 {
@@ -14,10 +16,14 @@ class EstablishmentController extends Controller
      */
     public function index(Request $request)
     {
+        // Get filter parameters from request
+        $type = $request->get('type', '');
+        $minPrice = $request->get('minPrice');
+        $maxPrice = $request->get('maxPrice');
+        $capacity = $request->get('capacity');
+        $searchName = $request->get('searchName', '');
+
         // Fetch all villas, riads, and appartements with their first image
-        // We eager-load 'images' and use 'first()' to get only one for the preview
-        // For production, consider using a default image if no images exist,
-        // or ensure at least one image is uploaded via validation/logic.
         $villas = Villa::with(['images' => function($query) {
             $query->limit(1);
         }])->get()->map(function($villa) {
@@ -46,15 +52,58 @@ class EstablishmentController extends Controller
         });
 
         // Combine all establishments into a single collection
-        $establishments = collect()
+        $allEstablishments = collect()
             ->merge($villas)
             ->merge($riads)
             ->merge($appartements);
 
-        // Optional: Apply server-side filtering based on request parameters
-        // This is important if you expect a very large number of establishments
-        // and want to avoid sending all of them to the frontend initially.
-        // For client-side filtering, we just pass all establishments.
+        // Apply filters
+        $filteredEstablishments = $allEstablishments->filter(function($establishment) use ($type, $minPrice, $maxPrice, $capacity, $searchName) {
+            // Filter by type
+            if (!empty($type) && $establishment->type !== $type) {
+                return false;
+            }
+
+            // Filter by price range
+            if (!empty($minPrice) && $establishment->price < $minPrice) {
+                return false;
+            }
+            if (!empty($maxPrice) && $establishment->price > $maxPrice) {
+                return false;
+            }
+
+            // Filter by capacity
+            if (!empty($capacity) && $establishment->capacity < $capacity) {
+                return false;
+            }
+
+            // Filter by name (search)
+            if (!empty($searchName) && stripos($establishment->name, $searchName) === false) {
+                return false;
+            }
+
+            return true;
+        });
+
+        // Pagination: 20 items per page
+        $perPage = 20;
+        $currentPage = Paginator::resolveCurrentPage() ?: 1;
+        $items = $filteredEstablishments->slice(($currentPage - 1) * $perPage, $perPage)->values();
+        
+        // Create paginator with query string parameters preserved
+        $establishments = new LengthAwarePaginator(
+            $items,
+            $filteredEstablishments->count(),
+            $perPage,
+            $currentPage,
+            [
+                'path' => Paginator::resolveCurrentPath(),
+                'pageName' => 'page',
+            ]
+        );
+
+        // Append query parameters to pagination links
+        $establishments->appends($request->query());
 
         return view('public.establishments.index', compact('establishments'));
     }

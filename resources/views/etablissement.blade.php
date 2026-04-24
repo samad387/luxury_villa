@@ -4,6 +4,10 @@
 
 @section('content')
 
+@php
+    $defaultType = request('type'); // villa | riad | appartement | null
+@endphp
+
 <!-- Hero Section -->
 <section style="position: relative; width: 100%; height: 450px; overflow: hidden;">
     <img src="https://www.marrakech-private-resort.com/wp-content/uploads/2018/03/Villa-Royal-Palm-3-5337.jpg" 

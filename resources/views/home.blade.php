@@ -105,32 +105,46 @@
 
     @media (max-width: 768px) {
         .hero-video-section {
-            height: 90vh;
-            min-height: 400px;
+            height: 60vh;
+            min-height: 260px;
         }
-
+        .hero-video-texts {
+            top: 18%;
+            max-width: 98vw;
+        }
         .hero-video-texts h1 {
-            font-size: 2.2rem;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
-
         .hero-video-texts h2 {
-            font-size: 1.1rem;
-            max-width: 90vw;
+            font-size: 0.95rem;
         }
-
         .hero-video-buttons {
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            top: 55%;
+        }
+        .hero-video-button {
+            font-size: 0.95rem;
+            padding: 10px 18px;
         }
         .gradient-title {
-            font-size: 2rem !important;
+            font-size: 1.2rem !important;
+            margin-bottom: 18px !important;
+        }
+        .mobile-section {
+            padding: 28px 8px !important;
+            border-radius: 12px !important;
+        }
+        .mobile-section p {
+            font-size: 1rem !important;
         }
     }
 </style>
 
 <div class="hero-video-section" aria-label="Vidéo de présentation de villa">
     <video class="active" autoplay muted loop playsinline>
-        <source src="{{ asset('image/villa.mp4') }}" type="video/mp4">
+        <source src="{{ asset('image/luxvilla.mp4') }}" type="video/mp4">
         Votre navigateur ne supporte pas la lecture vidéo.
     </video>
 
@@ -151,7 +165,7 @@
 <div style="height: 60px;"></div>
 
 <!-- Section texte avec fond dégradé élégant et ombre portée -->
-<div style="
+<div class="mobile-section" style="
     text-align: center; 
     padding: 60px 30px; 
     max-width: 900px; 
@@ -482,19 +496,22 @@
 
   @media (max-width: 600px) {
     .why-choose h2 {
-      font-size: 2.2rem;
+      font-size: 1.2rem;
+      margin-bottom: 28px;
     }
-
+    .choose-grid {
+      gap: 28px;
+    }
     .card-lux {
-      padding: 35px 20px;
+      padding: 22px 8px;
+      margin-bottom: 18px;
     }
-
     .title-lux {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
     }
-
     .text-lux {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 
@@ -521,135 +538,65 @@
 
 
 <!-- SECTION : Témoignages Clients -->
-<section style="background-color: #f5f5f5; padding: 100px 20px;">
+<section class="temoignages-section" style="background-color: #f5f5f5; padding: 100px 20px;">
   <div style="max-width: 1100px; margin: auto; text-align: center;">
     <h2 style="font-size: 3rem; font-weight: 700; margin-bottom: 60px; color: #1a1a1a; font-family: 'Georgia', serif; letter-spacing: 1px;">Ce que disent nos clients</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px;">
-      
-      <!-- Témoignage -->
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; font-family: 'Helvetica Neue', sans-serif; padding: 40px 0;">
-
-  <!-- Témoignage 1 -->
-  <div style="background: #fff; padding: 35px 30px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); max-width: 350px; transition: transform 0.3s ease;">
-    <div style="color: #f5a623; font-size: 1.2rem; margin-bottom: 15px;">
-      ★★★★★
-    </div>
-    <p style="font-style: italic; font-size: 1.1rem; color: #444; line-height: 1.8;">“Séjour inoubliable ! La villa était magnifique et l’équipe toujours disponible.”</p>
-    <h4 style="margin-top: 25px; font-weight: 600; color: #111; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">— Sarah M.</h4>
-  </div>
-
-  <!-- Témoignage 2 -->
-  <div style="background: #fff; padding: 35px 30px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); max-width: 350px; transition: transform 0.3s ease;">
-    <div style="color: #f5a623; font-size: 1.2rem; margin-bottom: 15px;">
-      ★★★★★
-    </div>
-    <p style="font-style: italic; font-size: 1.1rem; color: #444; line-height: 1.8;">“Organisation parfaite, activités incroyables. Je recommande vivement Royal Key Marrakech.”</p>
-    <h4 style="margin-top: 25px; font-weight: 600; color: #111; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">— Amine B.</h4>
-  </div>
-
-  <!-- Témoignage 3 -->
-  <div style="background: #fff; padding: 35px 30px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); max-width: 350px; transition: transform 0.3s ease;">
-    <div style="color: #f5a623; font-size: 1.2rem; margin-bottom: 15px;">
-      ★★★★★
-    </div>
-    <p style="font-style: italic; font-size: 1.1rem; color: #444; line-height: 1.8;">“L’expérience a dépassé nos attentes. On reviendra l’année prochaine !”</p>
-    <h4 style="margin-top: 25px; font-weight: 600; color: #111; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">— Clara & Thomas</h4>
-  </div>
-
-</div>
-
+    <div class="temoignages-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px;">
+      <!-- Témoignage 1 -->
+      <div class="temoignage-card" style="background: #fff; padding: 35px 30px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); max-width: 350px; transition: transform 0.3s ease; margin: 0 auto;">
+        <div class="temoignage-stars" style="color: #f5a623; font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+        <p style="font-style: italic; font-size: 1.1rem; color: #444; line-height: 1.8;">“Séjour inoubliable ! La villa était magnifique et l’équipe toujours disponible.”</p>
+        <h4 style="margin-top: 25px; font-weight: 600; color: #111; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">— SARAH M.</h4>
+      </div>
+      <!-- Témoignage 2 -->
+      <div class="temoignage-card" style="background: #fff; padding: 35px 30px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); max-width: 350px; transition: transform 0.3s ease; margin: 0 auto;">
+        <div class="temoignage-stars" style="color: #f5a623; font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+        <p style="font-style: italic; font-size: 1.1rem; color: #444; line-height: 1.8;">“Organisation parfaite, activités incroyables. Je recommande vivement Royal Key Marrakech.”</p>
+        <h4 style="margin-top: 25px; font-weight: 600; color: #111; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">— AMINE B.</h4>
+      </div>
+      <!-- Témoignage 3 -->
+      <div class="temoignage-card" style="background: #fff; padding: 35px 30px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); max-width: 350px; transition: transform 0.3s ease; margin: 0 auto;">
+        <div class="temoignage-stars" style="color: #f5a623; font-size: 1.2rem; margin-bottom: 15px;">★★★★★</div>
+        <p style="font-style: italic; font-size: 1.1rem; color: #444; line-height: 1.8;">“L’expérience a dépassé nos attentes. On reviendra l’année prochaine !”</p>
+        <h4 style="margin-top: 25px; font-weight: 600; color: #111; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;">— CLARA & THOMAS</h4>
+      </div>
     </div>
   </div>
 </section>
 
+<style>
+@media (max-width: 600px) {
+  .temoignages-section h2 {
+    font-size: 1.3rem !important;
+    margin-bottom: 28px !important;
+  }
+}
+</style>
+
 <!-- SECTION : Image immersive avec effet au scroll -->
-<section style="position: relative; height: 80vh; background-image: url('https://elitemarrakech.com/wp-content/uploads/2021/09/IMG-20170110-WA0107.jpg'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center;">
+<section class="experience-unique-section" style="position: relative; height: 80vh; background-image: url('https://elitemarrakech.com/wp-content/uploads/2021/09/IMG-20170110-WA0107.jpg'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center;">
   <div style="background: rgba(0, 0, 0, 0.7); padding: 80px 50px; border-radius: 20px; max-width: 850px; text-align: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);">
     <h2 style="color: #fff; font-size: 3rem; font-weight: 700; margin-bottom: 30px; font-family: 'Georgia', serif; letter-spacing: 1px;">Une Expérience Unique à Marrakech</h2>
     <p style="color: #e0e0e0; font-size: 1.25rem; line-height: 1.8; font-family: 'Helvetica Neue', sans-serif;">Profitez du luxe, du confort et d’un service personnalisé dans nos villas prestigieuses. Chaque détail est pensé pour vous offrir un séjour de rêve.</p>
   </div>
 </section>
 
-<!-- Section Catégories Mobile Images Only (Mobile First) -->
 <style>
 @media (max-width: 600px) {
-    .grid-conciergerie {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 28px !important;
-        max-width: 100vw !important;
-        margin: 0 auto !important;
-        padding: 0 2vw !important;
-    }
-    .carte-conciergerie {
-        background: none !important;
-        box-shadow: none !important;
-        border-radius: 18px !important;
-        margin: 0 0 10px 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-    .categorie-img-link {
-        display: block;
-        width: 98vw;
-        max-width: 98vw;
-        margin: 0 auto;
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: 0 4px 18px rgba(191,167,111,0.13);
-        transition: box-shadow 0.2s;
-    }
-    .categorie-img-link:active, .categorie-img-link:focus {
-        box-shadow: 0 8px 28px rgba(191,167,111,0.18);
-    }
-    .categorie-img-mobile {
-        width: 100%;
-        height: 38vw;
-        min-height: 160px;
-        max-height: 220px;
-        object-fit: cover;
-        border-radius: 18px;
-        display: block;
-    }
-    .categorie-titre-mobile {
-        font-size: 1.18rem;
-        color: #222;
-        text-align: center;
-        font-weight: 700;
-        margin-top: 12px;
-        margin-bottom: 2px;
-        letter-spacing: 0.5px;
-    }
-    .texte-categorie, .carte-conciergerie .btn, .carte-conciergerie a:not(.categorie-img-link) {
-        display: none !important;
-    }
+  .experience-unique-section h2 {
+    font-size: 1.2rem !important;
+    margin-bottom: 18px !important;
+  }
+  .experience-unique-section p {
+    font-size: 0.98rem !important;
+    padding: 0 2vw !important;
+  }
+  .experience-unique-section > div {
+    padding: 32px 8px !important;
+    border-radius: 12px !important;
+  }
 }
 </style>
 
-<!-- Exemple pour 3 catégories (à adapter dans la boucle si besoin) -->
-<div class="grid-conciergerie">
-    <div class="carte-conciergerie">
-        <a href="{{ route('public.establishments.index') }}" class="categorie-img-link">
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Villas de Luxe" class="categorie-img-mobile">
-        </a>
-        <div class="categorie-titre-mobile">Villas de Luxe</div>
-    </div>
-    <div class="carte-conciergerie">
-        <a href="{{ route('transport') }}" class="categorie-img-link">
-            <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80" alt="Transport Premium" class="categorie-img-mobile">
-        </a>
-        <div class="categorie-titre-mobile">Transport Premium</div>
-    </div>
-    <div class="carte-conciergerie">
-        <a href="{{ route('activite') }}" class="categorie-img-link">
-            <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=600&q=80" alt="Conciergerie de Luxe" class="categorie-img-mobile">
-        </a>
-        <div class="categorie-titre-mobile">Conciergerie de Luxe</div>
-    </div>
-</div>
-
-
+ 
 @endsection

@@ -50,6 +50,30 @@
                     VIP
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.jets.index') }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->routeIs('admin.jets.*')) bg-gray-700 @endif">
+                    <i class="fas fa-plane mr-3 text-lg"></i>
+                    Jets
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.yachts.index') }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->routeIs('admin.yachts.*')) bg-gray-700 @endif">
+                    <i class="fas fa-ship mr-3 text-lg"></i>
+                    Yachts
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.reservations.index') }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->routeIs('admin.reservations.*')) bg-gray-700 @endif">
+                    <i class="fas fa-calendar-check mr-3 text-lg"></i>
+                    Reservations
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.activities.index') }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->routeIs('admin.activities.*')) bg-gray-700 @endif">
+                    <i class="fas fa-running mr-3 text-lg"></i>
+                    Activités
+                </a>
+            </li>
             {{-- <li>
                 <a href="{{ route('admin.users.index') }}" class="flex items-center py-2 px-4 rounded-lg transition duration-200 hover:bg-gray-700 @if(request()->routeIs('admin.users.*')) bg-gray-700 @endif">
                     <i class="fas fa-users mr-3 text-lg"></i>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - @yield('title')</title>
+    <title>Admin Dashboard - @yield('title') | Keys Royal Marrakech</title>
     <!-- Tailwind CSS (make sure you've run npm run dev/prod) -->
         @vite('resources/css/app.css')
     <!-- Google Fonts: Inter (for modern UI) and Font Awesome (for icons) -->
@@ -13,7 +13,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
-
+    <link rel="icon" type="image/png" href="/image/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
+    <link rel="shortcut icon" href="/image/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png" />
+    <link rel="manifest" href="/image/site.webmanifest" />
     @stack('styles')
     <style>
         body {

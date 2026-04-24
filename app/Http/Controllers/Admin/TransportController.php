@@ -41,17 +41,32 @@ class TransportController extends Controller
             'type' => 'required|in:voiture,moto,vip',
             'nom' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'prix' => 'nullable|numeric',
+            'prix' => ['nullable', 'numeric', 'min:0', 'max:999999.99', function ($attribute, $value, $fail) {
+                // Rejeter la notation scientifique
+                if (is_string($value) && (stripos($value, 'e') !== false || stripos($value, 'E') !== false)) {
+                    $fail('Le prix ne peut pas être en notation scientifique. Veuillez entrer un nombre normal (ex: 1000.50).');
+                }
+            }],
             'capacity' => 'nullable|integer|min:1',
             'images.*' => 'nullable|image|max:2048',
         ]);
-        $transport = Transport::create($request->except('images'));
+        
+        // Convertir le prix en nombre si c'est une chaîne valide
+        if (isset($data['prix']) && is_string($data['prix'])) {
+            $data['prix'] = (float) $data['prix'];
+        }
+        
+        // Créer le transport avec les données validées (sans les images)
+        $transport = Transport::create($data);
+        
+        // Gérer les images séparément
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $path = $imageFile->store('transports', 'public');
                 $transport->images()->create(['path' => $path]);
             }
         }
+        
         return redirect()->route('admin.transports.index', ['type' => $data['type']])->with('success', 'Transport ajouté avec succès.');
     }
 
@@ -80,11 +95,22 @@ class TransportController extends Controller
             'type' => 'required|in:voiture,moto,vip',
             'nom' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'prix' => 'nullable|numeric',
+            'prix' => ['nullable', 'numeric', 'min:0', 'max:999999.99', function ($attribute, $value, $fail) {
+                // Rejeter la notation scientifique
+                if (is_string($value) && (stripos($value, 'e') !== false || stripos($value, 'E') !== false)) {
+                    $fail('Le prix ne peut pas être en notation scientifique. Veuillez entrer un nombre normal (ex: 1000.50).');
+                }
+            }],
             'capacity' => 'nullable|integer|min:1',
             'images.*' => 'nullable|image|max:2048',
         ]);
-        $transport->update($request->except('images'));
+        
+        // Convertir le prix en nombre si c'est une chaîne valide
+        if (isset($data['prix']) && is_string($data['prix'])) {
+            $data['prix'] = (float) $data['prix'];
+        }
+        
+        $transport->update($data);
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $path = $imageFile->store('transports', 'public');

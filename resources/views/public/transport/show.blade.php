@@ -113,12 +113,136 @@
         .transport-detail-container {
             grid-template-columns: 1fr;
             gap: 1rem;
+            margin: 1rem auto;
+            padding: 0 0.5rem;
         }
         .main-content, .sidebar {
             padding: 1rem;
         }
+        .transport-title {
+            font-size: 1.8rem;
+        }
+        .swiper-slide img {
+            height: 280px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .transport-detail-container {
+            margin: 0.5rem auto;
+            padding: 0 0.25rem;
+            gap: 0.75rem;
+        }
+        .main-content {
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+        .sidebar {
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .transport-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .swiper-slide img {
+            height: 250px;
+        }
+        .info-list {
+            font-size: 1rem;
+            margin: 1rem 0;
+        }
+        .description {
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        .sidebar h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        form input,
+        form textarea {
+            padding: 0.6rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        button[type="submit"] {
+            padding: 0.8rem;
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .transport-detail-container {
+            margin: 0.25rem auto;
+            padding: 0 0.125rem;
+            gap: 0.5rem;
+        }
+        .main-content {
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+        .sidebar {
+            padding: 0.75rem;
+            border-radius: 6px;
+        }
+        .transport-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
         .swiper-slide img {
             height: 220px;
+        }
+        .info-list {
+            font-size: 0.95rem;
+            margin: 0.75rem 0;
+        }
+        .description {
+            font-size: 0.95rem;
+            margin-top: 0.75rem;
+            line-height: 1.6;
+        }
+        .sidebar h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+        form label {
+            font-size: 0.9rem;
+        }
+        form input,
+        form textarea {
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+        button[type="submit"] {
+            padding: 0.7rem;
+            font-size: 0.95rem;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .transport-detail-container {
+            margin: 0.15rem auto;
+            padding: 0 0.1rem;
+        }
+        .main-content {
+            padding: 0.4rem;
+        }
+        .sidebar {
+            padding: 0.6rem;
+        }
+        .transport-title {
+            font-size: 1.2rem;
+        }
+        .swiper-slide img {
+            height: 200px;
+        }
+        .info-list {
+            font-size: 0.9rem;
+        }
+        .description {
+            font-size: 0.9rem;
         }
     }
 </style>

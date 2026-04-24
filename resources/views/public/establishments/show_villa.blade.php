@@ -3,9 +3,6 @@
 @section('title', 'Villa de Luxe - Marrakech')
 
 @section('content')
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
@@ -46,215 +43,217 @@
     color: #333;
   }
 
-  /* Swiper Styles */
-  .swiper {
-    max-width: 100%;
+  /* Image layout (match riad) */
+  .main-image-container {
+    position: relative;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 1rem;
-  }
-
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
   }
 
-  .swiper-slide img {
-    display: block;
+  .main-image-container img {
     width: 100%;
     height: 450px;
     object-fit: cover;
     transition: transform 0.3s ease;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
-  .swiper-slide:hover img {
+  .main-image-container:hover img {
     transform: scale(1.03);
   }
 
-  .swiper-button-next,
-  .swiper-button-prev {
-    color: #fff;
-    background: rgba(0,0,0,0.5);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    transition: background 0.3s ease;
-  }
-
-  .swiper-button-next:hover,
-  .swiper-button-prev:hover {
-    background: rgba(0,0,0,0.7);
-  }
-
-  .swiper-button-next::after,
-  .swiper-button-prev::after {
-    font-size: 20px;
-  }
-
-  .swiper-pagination-bullet {
-    background: #fff;
-    opacity: 0.7;
-  }
-
-  .swiper-pagination-bullet-active {
-    background: #FF5A5F;
-    opacity: 1;
-  }
-
-  /* Thumbnail Swiper */
-  .thumbnail-swiper {
+  .carousel-controls {
+    position: absolute;
+    top: 50%;
     width: 100%;
-    height: 100px;
-    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
   }
 
-  .thumbnail-swiper .swiper-slide {
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
+  .carousel-controls span {
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 10px 14px;
+    font-size: 1.4rem;
     cursor: pointer;
+    border-radius: 50%;
+    pointer-events: all;
+    transition: background 0.3s ease;
+    user-select: none;
   }
 
-  .thumbnail-swiper .swiper-slide-thumb-active {
-    opacity: 1;
-    border: 2px solid #FF5A5F;
-    border-radius: 8px;
+  .carousel-controls span:hover {
+    background-color: rgba(0,0,0,0.7);
   }
 
-  .thumbnail-swiper .swiper-slide img {
-    width: 100%;
+  .thumbnail-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+  }
+
+  .thumbnail-row::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .thumbnail-row::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .thumbnail-row::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+
+  .thumbnail-row::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+
+  .thumbnail-row img {
+    width: 100px;
     height: 70px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .thumbnail-row img:hover,
+  .thumbnail-row img.active {
+    border: 2px solid #FF5A5F;
+    transform: scale(1.05);
   }
 
   /* Responsive Styles */
   @media (max-width: 998px) {
-    .swiper {
-    max-width: 550px;
-  }
-    .swiper-slide img {
-      height: 300px;
+    .main-image-container {
+      margin-bottom: 0.75rem;
+      border-radius: 10px;
     }
-    
-    .thumbnail-swiper {
-      height: 80px;
-      margin-bottom: 1rem;
+    .main-image-container img { 
+      height: 320px; 
+      max-width: 100%;
+      object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
     }
-    
-    .thumbnail-swiper .swiper-slide img {
-      height: 60px;
-    }
-    
-    .swiper-button-next,
-    .swiper-button-prev {
-      width: 40px;
-      height: 40px;
-    }
-    
-    .swiper-button-next::after,
-    .swiper-button-prev::after {
-      font-size: 16px;
-    }
-    
-    .fullscreen-swiper {
-      width: 95%;
-      height: 85vh;
-    }
-    
-    .fullscreen-close {
-      top: 10px;
-      right: 15px;
-      font-size: 1.5rem;
+    .carousel-controls span {
       padding: 8px 12px;
+      font-size: 1.2rem;
     }
-    
-    .swiper-pagination {
-      bottom: 10px;
+    .thumbnail-row { 
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
     }
-    
-    .swiper-pagination-bullet {
-      width: 8px;
-      height: 8px;
+    .thumbnail-row img { 
+      width: 90px;
+      height: 65px;
+      border-radius: 6px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .main-image-container {
+      margin-bottom: 0.75rem;
+      border-radius: 10px;
+    }
+    .main-image-container img { 
+      height: 300px; 
+      max-width: 100%;
+      width: 100%;
+      object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .carousel-controls {
+      padding: 0 0.5rem;
+    }
+    .carousel-controls span {
+      padding: 7px 11px;
+      font-size: 1.1rem;
+    }
+    .thumbnail-row { 
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+    }
+    .thumbnail-row img { 
+      width: 85px;
+      height: 60px;
+      border-radius: 6px;
     }
   }
 
   @media (max-width: 480px) {
-    .swiper {
-    max-width: 320px;
-  }
-    .swiper-slide img {
-      height: 250px;
-    }
-    
-    .thumbnail-swiper {
-      height: 70px;
+    .main-image-container {
       margin-bottom: 0.75rem;
+      border-radius: 8px;
     }
-    
-    .thumbnail-swiper .swiper-slide img {
-      height: 50px;
+    .main-image-container img { 
+      height: 280px; 
+      max-width: 100%;
+      width: 100%;
+      object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
     }
-    
-    .swiper-button-next,
-    .swiper-button-prev {
-      width: 35px;
-      height: 35px;
+    .carousel-controls {
+      padding: 0 0.5rem;
     }
-    
-    .swiper-button-next::after,
-    .swiper-button-prev::after {
-      font-size: 14px;
-    }
-    
-    .swiper-pagination {
-      bottom: 8px;
-    }
-    
-    .swiper-pagination-bullet {
-      width: 6px;
-      height: 6px;
-    }
-    
-    .fullscreen-swiper {
-      width: 98%;
-      height: 80vh;
-    }
-    
-    .fullscreen-close {
-      top: 5px;
-      right: 10px;
-      font-size: 1.2rem;
+    .carousel-controls span {
       padding: 6px 10px;
+      font-size: 1rem;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .thumbnail-row { 
+      gap: 6px;
+      margin-bottom: 1.25rem;
+      padding: 0.5rem 0.25rem;
+    }
+    .thumbnail-row img { 
+      width: 75px;
+      height: 55px;
+      border-radius: 6px;
     }
   }
 
   @media (max-width: 360px) {
-    .swiper-slide img {
-      height: 200px;
+    .main-image-container {
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
     }
-    
-    .thumbnail-swiper {
-      height: 60px;
+    .main-image-container img { 
+      height: 240px; 
+      max-width: 100%;
+      width: 100%;
+      object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
     }
-    
-    .thumbnail-swiper .swiper-slide img {
-      height: 45px;
+    .carousel-controls span {
+      padding: 5px 8px;
+      font-size: 0.9rem;
+      background-color: rgba(0,0,0,0.6);
     }
-    
-    .swiper-button-next,
-    .swiper-button-prev {
-      width: 30px;
-      height: 30px;
+    .thumbnail-row { 
+      gap: 5px;
+      margin-bottom: 1rem;
+      padding: 0.5rem 0.25rem;
     }
-    
-    .swiper-button-next::after,
-    .swiper-button-prev::after {
-      font-size: 12px;
+    .thumbnail-row img { 
+      width: 65px;
+      height: 50px;
+      border-radius: 5px;
     }
   }
 
@@ -348,47 +347,70 @@
     background-color: #e0484d;
   }
 
-  /* Fullscreen Modal */
-  .fullscreen-modal {
+  /* Fullscreen overlay (match riad) */
+  #fullscreenOverlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top:0; left:0; right:0; bottom:0;
     background-color: rgba(0,0,0,0.95);
     z-index: 9999;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
 
-  .fullscreen-modal.active {
-    display: flex;
-  }
+  #fullscreenOverlay.active { display: flex; }
 
-  .fullscreen-swiper {
-    width: 90%;
-    height: 90vh;
-  }
-
-  .fullscreen-swiper .swiper-slide img {
-    width: 100%;
-    height: 100%;
+  #fullscreenImage {
+    max-width: 90%;
+    max-height: 90vh;
     object-fit: contain;
     border-radius: 10px;
   }
 
-  .fullscreen-close {
+  #closeFullscreen {
     position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
+    top: 1.5rem;
+    right: 1.5rem;
     font-size: 2rem;
+    color: white;
     cursor: pointer;
+    user-select: none;
     background: rgba(0,0,0,0.4);
-    padding: 10px 15px;
+    padding: 0.3rem 0.7rem;
     border-radius: 50%;
     z-index: 10000;
+    transition: background 0.3s ease;
+  }
+
+  #closeFullscreen:hover {
+    background: rgba(0,0,0,0.7);
+  }
+
+  @media (max-width: 768px) {
+    #fullscreenImage {
+      max-width: 95%;
+      max-height: 85vh;
+    }
+    #closeFullscreen {
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #fullscreenImage {
+      max-width: 98%;
+      max-height: 80vh;
+    }
+    #closeFullscreen {
+      top: 0.75rem;
+      right: 0.75rem;
+      font-size: 1.2rem;
+      padding: 0.2rem 0.4rem;
+    }
   }
 
   /* Location Section (Map) */
@@ -567,50 +589,20 @@
     <h1 class="villa-title">{{$villa->name}}</h1>
     
     @if($villa->images && $villa->images->count() > 0)
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <div class="swiper mainSwiper" style="max-width: 700px; margin: 0 auto 32px;">
-        <div class="swiper-wrapper">
-            @foreach($villa->images as $img)
-                <div class="swiper-slide">
-                    <img src="{{ asset('storage/' . $img->path) }}" alt="{{ $villa->name }}" style="width:100%;height:400px;object-fit:cover;border-radius:16px;box-shadow:0 2px 16px #0002;">
-                </div>
-            @endforeach
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        new Swiper('.mainSwiper', {
-            spaceBetween: 30,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            loop: true,
-            autoplay: false,
-            keyboard: { enabled: true },
-        });
-    });
-    </script>
-@endif
-    
-    <!-- Thumbnail Swiper -->
-    <div class="swiper thumbnailSwiper">
-      <div class="swiper-wrapper">
-        @foreach ($villa->images as $image)
-        <div class="swiper-slide">
-          <img src="{{asset('storage/' . $image->path)}}" alt="{{$villa->name}}">
-        </div>
-        @endforeach
+    <div class="main-image-container" onclick="openFullscreen()">
+      <img id="mainImage" src="{{ asset('storage/' . ($villa->images->first()->path ?? '')) }}" alt="{{ $villa->name }}" loading="eager">
+      <div class="carousel-controls">
+        <span onclick="event.stopPropagation(); prevImage()">❮</span>
+        <span onclick="event.stopPropagation(); nextImage()">❯</span>
       </div>
     </div>
+
+    <div class="thumbnail-row" id="thumbnailRow">
+      @foreach ($villa->images as $image)
+        <img src="{{ asset('storage/' . $image->path) }}" class="{{ $image->id == $villa->images->first()->id ? 'active' : ''}}" onclick="changeImage(this)" alt="{{ $villa->name }}">
+      @endforeach
+    </div>
+    @endif
     
     <section class="description">
       <h2>Description</h2>
@@ -667,25 +659,11 @@
   </aside>
 </div>
 
-<!-- Fullscreen Modal -->
-<div class="fullscreen-modal" id="fullscreenModal">
-  <div class="fullscreen-close" onclick="closeFullscreen()">×</div>
-  <div class="swiper fullscreenSwiper">
-    <div class="swiper-wrapper">
-      @foreach ($villa->images as $image)
-      <div class="swiper-slide">
-        <img src="{{asset('storage/' . $image->path)}}" alt="{{$villa->name}}">
-      </div>
-      @endforeach
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-  </div>
+<!-- Overlay plein écran (match riad) -->
+<div id="fullscreenOverlay" onclick="closeFullscreen()">
+  <span id="closeFullscreen" onclick="event.stopPropagation(); closeFullscreen()">×</span>
+  <img id="fullscreenImage" src="" alt="Image en plein écran">
 </div>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 @if ($villa->geo_emplacement && $villa->coordinates)
 <script>
@@ -722,131 +700,72 @@
 @endif
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize main swiper
-    const mainSwiper = new Swiper('.mainSwiper', {
-        spaceBetween: 30,
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        thumbs: {
-            swiper: {
-                el: '.thumbnailSwiper',
-                slidesPerView: 5,
-                spaceBetween: 10,
-                freeMode: true,
-                watchSlidesProgress: true,
-                breakpoints: {
-                    320: {
-                        slidesPerView: 3,
-                        spaceBetween: 5,
-                    },
-                    480: {
-                        slidesPerView: 4,
-                        spaceBetween: 8,
-                    },
-                    768: {
-                        slidesPerView: 5,
-                        spaceBetween: 10,
-                    }
-                }
-            }
-        },
-        keyboard: {
-            enabled: true,
-        },
-        loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-        },
-        breakpoints: {
-            320: {
-                spaceBetween: 10,
-            },
-            768: {
-                spaceBetween: 30,
-            }
-        }
-    });
+  const thumbnails = document.querySelectorAll('#thumbnailRow img');
+  const mainImage = document.getElementById('mainImage');
+  const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+  const fullscreenImage = document.getElementById('fullscreenImage');
 
-    // Initialize fullscreen swiper
-    const fullscreenSwiper = new Swiper('.fullscreenSwiper', {
-        spaceBetween: 30,
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true
-        },
-        navigation: {
-            nextEl: '.fullscreenSwiper .swiper-button-next',
-            prevEl: '.fullscreenSwiper .swiper-button-prev',
-        },
-        pagination: {
-            el: '.fullscreenSwiper .swiper-pagination',
-            clickable: true,
-        },
-        keyboard: {
-            enabled: true,
-        },
-        loop: true,
-        breakpoints: {
-            320: {
-                spaceBetween: 10,
-            },
-            768: {
-                spaceBetween: 30,
-            }
-        }
-    });
+  let currentIndex = 0;
 
-    // Fullscreen functionality
-    const fullscreenModal = document.getElementById('fullscreenModal');
-    
-    window.openFullscreen = function() {
-        fullscreenModal.classList.add('active');
-        fullscreenSwiper.slideTo(mainSwiper.activeIndex);
-        document.body.style.overflow = 'hidden';
+  const updateMainImage = (index) => {
+    if (!thumbnails.length) return;
+    mainImage.src = thumbnails[index].src;
+    thumbnails.forEach(img => img.classList.remove('active'));
+    thumbnails[index].classList.add('active');
+    currentIndex = index;
+  }
+
+  const changeImage = (element) => {
+    const index = Array.from(thumbnails).indexOf(element);
+    updateMainImage(index);
+  }
+
+  const prevImage = () => {
+    const newIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+    updateMainImage(newIndex);
+  }
+
+  const nextImage = () => {
+    const newIndex = (currentIndex + 1) % thumbnails.length;
+    updateMainImage(newIndex);
+  }
+
+  // Fullscreen
+  const openFullscreen = () => {
+    fullscreenOverlay.classList.add('active');
+    fullscreenImage.src = mainImage.src;
+  }
+
+  const closeFullscreen = () => {
+    fullscreenOverlay.classList.remove('active');
+  }
+
+  const prevFullscreenImage = () => {
+    const newIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+    currentIndex = newIndex;
+    fullscreenImage.src = thumbnails[newIndex].src;
+    updateMainImage(newIndex);
+  }
+
+  const nextFullscreenImage = () => {
+    const newIndex = (currentIndex + 1) % thumbnails.length;
+    currentIndex = newIndex;
+    fullscreenImage.src = thumbnails[newIndex].src;
+    updateMainImage(newIndex);
+  }
+
+  // Keyboard controls
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
+      closeFullscreen();
     }
-    
-    window.closeFullscreen = function() {
-        fullscreenModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    if (e.key === 'ArrowLeft' && fullscreenOverlay.classList.contains('active')) {
+      prevFullscreenImage();
     }
-
-    // Close fullscreen with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && fullscreenModal.classList.contains('active')) {
-            closeFullscreen();
-        }
-    });
-
-    // Close fullscreen when clicking outside the image
-    fullscreenModal.addEventListener('click', function(e) {
-        if (e.target === fullscreenModal) {
-            closeFullscreen();
-        }
-    });
-
-    // Sync main swiper with fullscreen swiper
-    mainSwiper.on('slideChange', function() {
-        if (fullscreenModal.classList.contains('active')) {
-            fullscreenSwiper.slideTo(mainSwiper.activeIndex);
-        }
-    });
-
-    fullscreenSwiper.on('slideChange', function() {
-        mainSwiper.slideTo(fullscreenSwiper.activeIndex);
-    });
-});
+    if (e.key === 'ArrowRight' && fullscreenOverlay.classList.contains('active')) {
+      nextFullscreenImage();
+    }
+  });
 </script>
 @endsection
 

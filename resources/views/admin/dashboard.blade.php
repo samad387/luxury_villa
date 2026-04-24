@@ -64,6 +64,36 @@
                 <i class="fas fa-crown"></i>
             </div>
         </div>
+        <!-- Jets Privés -->
+        <div class="bg-white rounded-lg shadow-md p-6 flex items-center justify-between transition-transform transform hover:scale-105 duration-200">
+            <div>
+                <h3 class="text-gray-500 text-sm font-medium uppercase mb-2">Total Jets Privés</h3>
+                <p class="text-3xl font-bold text-gray-900">{{ App\Models\Jet::count() }}</p>
+            </div>
+            <div class="text-cyan-500 text-4xl">
+                <i class="fas fa-plane"></i>
+            </div>
+        </div>
+        <!-- Yachts -->
+        <div class="bg-white rounded-lg shadow-md p-6 flex items-center justify-between transition-transform transform hover:scale-105 duration-200">
+            <div>
+                <h3 class="text-gray-500 text-sm font-medium uppercase mb-2">Total Yachts</h3>
+                <p class="text-3xl font-bold text-gray-900">{{ App\Models\Yacht::count() }}</p>
+            </div>
+            <div class="text-teal-500 text-4xl">
+                <i class="fas fa-ship"></i>
+            </div>
+        </div>
+        <!-- Reservations -->
+        <div class="bg-white rounded-lg shadow-md p-6 flex items-center justify-between transition-transform transform hover:scale-105 duration-200">
+            <div>
+                <h3 class="text-gray-500 text-sm font-medium uppercase mb-2">Total Reservations</h3>
+                <p class="text-3xl font-bold text-gray-900">{{ App\Models\Reservation::count() }}</p>
+            </div>
+            <div class="text-pink-500 text-4xl">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+        </div>
     </div>
 
     <div class="mt-8 bg-white rounded-lg shadow-md p-6">
@@ -93,6 +123,14 @@
             <a href="{{ route('admin.transports.create', ['type' => 'vip']) }}" class="flex items-center space-x-2 px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-200">
                 <i class="fas fa-plus-circle"></i>
                 <span>Ajouter VIP Transport</span>
+            </a>
+            <a href="{{ route('admin.jets.create') }}" class="flex items-center space-x-2 px-4 py-2 bg-cyan-500 text-white rounded-md hover:bg-cyan-600 transition duration-200">
+                <i class="fas fa-plus-circle"></i>
+                <span>Add New Jet</span>
+            </a>
+            <a href="{{ route('admin.yachts.create') }}" class="flex items-center space-x-2 px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 transition duration-200">
+                <i class="fas fa-plus-circle"></i>
+                <span>Add New Yacht</span>
             </a>
         </div>
     </div>
